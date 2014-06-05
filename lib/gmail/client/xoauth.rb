@@ -18,6 +18,7 @@ module Gmail
       end
 
       def login(raise_errors=false)
+        puts "in the login  method of the XOAuth class"
         @imap and @logged_in = (login = @imap.authenticate('XOAUTH', username,
           :consumer_key    => consumer_key,
           :consumer_secret => consumer_secret,
