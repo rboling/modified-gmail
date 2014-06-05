@@ -18,7 +18,6 @@ module Gmail
       end
 
       def login(raise_errors=false)
-        puts "in the login  method of the XOAuth class"
         #@imap and @logged_in = (login = @imap.authenticate('XOAUTH', username,
         #  :consumer_key    => consumer_key,
         #  :consumer_secret => consumer_secret,
@@ -29,9 +28,6 @@ module Gmail
         puts "after authentication"
         #@imap and @logged_in = (login = @imap.authenticate('XOAUTH', username, token)) && login.name == 'OK'
       rescue Exception => e
-        puts e.message
-        puts e.backtrace.inspect
-        puts "in the rescue block"
         raise_errors and raise AuthorizationError, "Couldn't login to given GMail account: #{username}"        
       end
 
