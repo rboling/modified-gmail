@@ -19,12 +19,13 @@ module Gmail
 
       def login(raise_errors=false)
         puts "in the login  method of the XOAuth class"
-        @imap and @logged_in = (login = @imap.authenticate('XOAUTH', username,
-          :consumer_key    => consumer_key,
-          :consumer_secret => consumer_secret,
-          :token           => token,
-          :token_secret    => secret
-        )) && login.name == 'OK'
+        #@imap and @logged_in = (login = @imap.authenticate('XOAUTH', username,
+        #  :consumer_key    => consumer_key,
+        #  :consumer_secret => consumer_secret,
+        #  :token           => token,
+        #  :token_secret    => secret
+        #)) && login.name == 'OK'
+        @imap and @logged_in = (login = @imap.authenticate('XOAUTH', username, token)) && login.name == 'OK'
       rescue
         raise_errors and raise AuthorizationError, "Couldn't login to given GMail account: #{username}"        
       end
