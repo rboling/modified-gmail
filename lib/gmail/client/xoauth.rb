@@ -8,7 +8,7 @@ module Gmail
       attr_reader :consumer_key
       attr_reader :consumer_secret
 
-      def initialize(username, options={})
+      def initialize(username, token=nil, options={})
         @token           = options.delete(:token)
         @secret          = options.delete(:secret)
         @consumer_key    = options.delete(:consumer_key)
@@ -25,8 +25,11 @@ module Gmail
         #  :token           => token,
         #  :token_secret    => secret
         #)) && login.name == 'OK'
-        @imap and @logged_in = (login = @imap.authenticate('XOAUTH', username, token)) && login.name == 'OK'
+        @imap.authenticate('XOAUTH', username, token)
+        puts "after authentication"
+        #@imap and @logged_in = (login = @imap.authenticate('XOAUTH', username, token)) && login.name == 'OK'
       rescue
+        puts "in the rescue block"
         raise_errors and raise AuthorizationError, "Couldn't login to given GMail account: #{username}"        
       end
 
