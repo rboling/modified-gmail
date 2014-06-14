@@ -25,7 +25,6 @@ module Gmail
         #  :token_secret    => secret
         #)) && login.name == 'OK'
         @imap.authenticate('XOAUTH2', username, token)
-        puts "after authentication"
         #@imap and @logged_in = (login = @imap.authenticate('XOAUTH', username, token)) && login.name == 'OK'
       rescue Exception => e
         raise_errors and raise AuthorizationError, "Couldn't login to given GMail account: #{username}"        
